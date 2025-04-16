@@ -11,7 +11,7 @@ it might be named something else for youYou can rename it. Git ignores your buil
 If you need help I am here for you. I have 0 experience in Qt, and I am not very experienced with Git or GitHub, have patience.
 
 ## Prerecs 
-- Qt5 not Qt6. It can only be Qt5. 
+- Qt6 is preferred
 - CMake
 
 ### Build Instructions 
