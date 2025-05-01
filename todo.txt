@@ -8,7 +8,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Accounts (created)
 -Admin account (created)
 -(Circular lists (N/A, changed to dynamic arrays))
--Dynamic arrays (finished)
+-Dynamic arrays (in progress. inheritance issues being sorted)
 
 -Create and fill out implimentation files for:
 -Appointments (created, but may need some additions)
@@ -23,10 +23,10 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Create master file template (draft made)
 
 -Design methods for:
--Appointments
+-Appointments 
 -Accounts
 -Admin
--Schedule book
+-Schedule book (in progress)
 
 -Create password handler (should be a method in the schedule book file)
 
