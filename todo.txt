@@ -34,3 +34,5 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Create menu for admin account
 
 -Add logic to schedule type to create a master file if none exists
+
+-Delete the remaining Cmake files
