@@ -28,3 +28,4 @@ protected:
     int maxSize;
 
 };
+#endif
