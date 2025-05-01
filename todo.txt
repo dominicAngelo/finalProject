@@ -1,0 +1,34 @@
+Final project todo list
+Add items as needed
+When an item is finished, or modified, note this in parenthesis (I will give some examples at the start).
+
+-Create header files for:
+-Appointments (finished)
+-Schedule book (finished)
+-Accounts (finished)
+-Admin account
+-(Circular lists (N/A, changed to dynamic arrays))
+-Dynamic arrays
+
+-Create and fill out implimentation files for:
+-Appointments (created, but may need some additions)
+-Schedule book (created, but empty)
+-Accounts (created, but empty)
+-Admin account
+-(Circular lists (N/A, changed to dynamic arrays))
+-Dynamic arrays
+
+-Create methods for accounts, and schedule book to read their relevent files
+-Create account file template
+-Create master file template
+
+-Design methods for:
+-Appointments
+-Accounts
+-Admin
+-Schedule book
+
+-Create password handler
+
+-Create menu for normal accounts
+-Create menu for admin account
