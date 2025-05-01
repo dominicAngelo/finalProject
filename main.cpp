@@ -2,15 +2,9 @@
 // Copyright (c) 2025 Dominic Angelo
 // See LICENSE.txt for more details
 
-#include <QApplication>
-#include <QPushButton>
+#include "scheduleType.h"
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
+int main() {
 
-    QPushButton button("Button!");
-    button.resize(300, 100);
-    button.show();
-
-    return app.exec();
+    return 0;
 }
