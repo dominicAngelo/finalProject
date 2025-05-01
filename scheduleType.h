@@ -21,9 +21,12 @@ public:
 
     void exportMasterData(string filename);
     //exports all of the current master data to the master file
+
+    void createAccountBook();
+    //creates the account array
 private:
-    appointmentType *appointments;
-    //variable for the appointments array
+    accountType *accounts;
+    //variable for the accounts array
     string adminName;
     string adminPassword;
 };
