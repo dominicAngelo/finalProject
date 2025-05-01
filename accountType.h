@@ -1,5 +1,6 @@
 #ifndef account_test;
 #define account_test
+using namespace std;
 
 #include "appointmentType.h"
 #include "orderedArrayListType.h"
