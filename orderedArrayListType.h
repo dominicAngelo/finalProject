@@ -1,4 +1,4 @@
-#infdef ordered_list
+#ifndef ordered_list
 #define ordered_list
 
 #include "arrayListType.h"
@@ -31,3 +31,4 @@ protected:
     int maxSize;
 
 };
+#endif
