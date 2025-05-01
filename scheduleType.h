@@ -22,8 +22,8 @@ public:
     void exportMasterData(string filename);
     //exports all of the current master data to the master file
 private:
-    //TO DO put the dynamic array here
-    //variable for the appointment array
+    appointmentType *appointments;
+    //variable for the appointments array
     string adminName;
     string adminPassword;
 };
