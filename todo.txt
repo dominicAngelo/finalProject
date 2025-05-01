@@ -16,7 +16,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Accounts (created, but empty)
 -Admin account (created)
 -(Circular lists (N/A, changed to dynamic arrays))
--Dynamic arrays (finished, but may be modified later)
+-Dynamic arrays (finished)
 
 -Create methods for accounts, and schedule book to read their relevent files
 -Create account file template
