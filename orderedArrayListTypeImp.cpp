@@ -41,6 +41,34 @@ bool orderedArrayListType::isItemAtEqual(int location, int item)const
         return (list[location] == item);
 }
 
+void orderedArrayListTye::insertAt(int location, int insertItem)
+{
+    if (location < 0 || location >= maxSize)
+        cout << "The position of the item to be inserted is out of range." << endl;
+    else if (length >= maxSize)
+        cout << "Cannot insert in a full list." << endl;
+    else
+    {
+        for (int i = length; i>location; i--)
+            list[i] = list[i-1];
+
+            list[location] = insertItem;
+
+            length++;
+    }
+
+void orderedArrayListType::insertEnd(int insertItem)
+{
+    if (length >= maxSize)
+        cout << "Cannot insert in a full list." << endl;
+    else
+    {
+        list[length] = insertItem;
+        length++;
+    }
+}
+
+
 void orderedArrayListType::removeAt(int location)
 {
     if (location <0 || location >= length)
@@ -75,6 +103,33 @@ void orderedArrayListType::insert(int insertItem)
     }
 }
 
+void orderedArrayListType::replaceAt(int location, int repItem)
+{
+    if (location < 0 || location >= length)
+            cout << "The location of the item to be replaced is out of range." << endl;
+    else
+        list[location] = repItem;
+}
+
+int orderedArrayListType::seqSearch(int searchItem) const
+{
+    int loc;
+    bool found = false;
+
+    loc = 0;
+
+    while (loc < length && !found)
+        if (list[loc] == searchItem)
+            found = true;
+        else
+            loc++;
+
+        if (found)
+            return loc;
+        else
+            return -1;
+}
+
 void orderedArrayListType::remove(int removeItem)
 {
     int loc;
@@ -90,7 +145,7 @@ void orderedArrayListType::remove(int removeItem)
     }
 }
 
-    void orderedArrayListType::retrieveAt(int location, int& retItem) const
+void orderedArrayListType::retrieveAt(int location, int& retItem) const
     {
         if (location <0 || location >= length)
             cout << "The location of the item to be removed " << "is out of range." << endl;
@@ -98,7 +153,7 @@ void orderedArrayListType::remove(int removeItem)
             retItem = list[location];
     }
 
-    void orderedArrayListType::clearList()
+void orderedArrayListType::clearList()
     {
         length = 0;
     }
