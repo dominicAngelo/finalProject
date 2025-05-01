@@ -3,10 +3,10 @@ Add items as needed
 When an item is finished, or modified, note this in parenthesis (I will give some examples at the start).
 
 -Create header files for:
--Appointments (finished)
--Schedule book (finished)
--Accounts (finished)
--Admin account
+-Appointments (created)
+-Schedule book (created)
+-Accounts (created)
+-Admin account (created)
 -(Circular lists (N/A, changed to dynamic arrays))
 -Dynamic arrays
 
@@ -14,7 +14,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Appointments (created, but may need some additions)
 -Schedule book (created, but empty)
 -Accounts (created, but empty)
--Admin account
+-Admin account 
 -(Circular lists (N/A, changed to dynamic arrays))
 -Dynamic arrays
 
@@ -28,7 +28,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Admin
 -Schedule book
 
--Create password handler
+-Create password handler (should be a method in the schedule book file)
 
 -Create menu for normal accounts
 -Create menu for admin account
