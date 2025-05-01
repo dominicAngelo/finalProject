@@ -9,6 +9,10 @@ void scheduleType::readMasterData(string filename) {
 	//this data is a placeholder until the dynamic arrays are implimented 
 	ifstream inData;
 	inData.open(filename);
+	if (!file) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return;
+    	}
 	//file name should be the masterfile
 	inData >> adminName >> adminPassword;
 	//the data in the files should contain the last name, the passwords, and have no spaces. 
@@ -32,6 +36,10 @@ void scheduleType::exportMasterData(string filename) {
 	ofstream outData;
 	outData.open(filename);
 	//file name should be the masterfile
+	if (!file) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return;
+    	}
 	outData << adminName << endl << adminPassword << endl << endl;
 	for (int i = 0; i < length; i++) {
 		outData << placeholderNamesArray[i] << endl << placeholderPasswordsArray << endl << endl;
