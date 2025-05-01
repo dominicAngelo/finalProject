@@ -21,5 +21,6 @@ public:
 private:
     //TO DO put the dynamic array here
     //variable for the appointment array
+    string adminName;
+    string adminPassword;
 };
-
