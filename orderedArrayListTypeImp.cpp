@@ -41,7 +41,7 @@ bool orderedArrayListType::isItemAtEqual(int location, int item)const
         return (list[location] == item);
 }
 
-void orderedArrayListTye::insertAt(int location, int insertItem)
+void orderedArrayListType::insertAt(int location, int insertItem)
 {
     if (location < 0 || location >= maxSize)
         cout << "The position of the item to be inserted is out of range." << endl;
