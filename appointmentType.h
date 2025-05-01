@@ -10,6 +10,8 @@ public:
 	//changes the date to the variables in the parameters
 	void changeDescription(string desc);
 	//changes the description to what is in the parameter
+	bool isEmpty() const;
+	//checks if the appointment is empty
 	appointmentType() {
 		year = 0;
 		month = 0;
