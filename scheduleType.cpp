@@ -6,7 +6,6 @@ using namespace std;
 void scheduleType::readMasterData(string filename) {
 	string placeholderNamesArray[100];
 	string placeholderPasswordsArray[100];
-	string adminName, adminPassword;
 	//this data is a placeholder until the dynamic arrays are implimented 
 	ifstream inData;
 	inData.open(filename);
@@ -21,5 +20,21 @@ void scheduleType::readMasterData(string filename) {
 	if (i < 100) {
 		cout << "Too much data. Excess accounts have been lost";
 	}
+	inData.close();
 }
 
+void scheduleType::exportMasterData(string filename) {
+	string placeholderNamesArray[100];
+	string placeholderPasswordsArray[100];
+	//this data is a placeholder until the dynamic arrays are implimented 
+	int length = 5;
+	//length should be replaced with the int keeping track of the length of the account array as soon as possible
+	ofstream outData;
+	outData.open(filename);
+	//file name should be the masterfile
+	outData << adminName << endl << adminPassword << endl << endl;
+	for (int i = 0; i < length; i++) {
+		outData << placeholderNamesArray[i] << endl << placeholderPasswordsArray << endl << endl;
+	}
+	outData.close();
+}
