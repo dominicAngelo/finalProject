@@ -56,6 +56,7 @@ void orderedArrayListType::insertAt(int location, int insertItem)
 
             length++;
     }
+}
 
 void orderedArrayListType::insertEnd(int insertItem)
 {
