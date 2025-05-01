@@ -1,4 +1,6 @@
-class orderedArrayListType
+#include "arrayListType.h"
+
+class orderedArrayListType: public arrayListType
 {
 public:
     bool isEmpty() const;
