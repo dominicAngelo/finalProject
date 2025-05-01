@@ -1,3 +1,6 @@
+#ifndef array_list
+#define array_list
+
 class arrayListType
 {
 public:
