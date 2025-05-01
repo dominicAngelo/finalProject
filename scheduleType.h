@@ -1,4 +1,4 @@
-#include <iostream>
+include <iostream>
 #include "appointmentType.h"
 #include "orderedArrayListType.h"
 
@@ -18,6 +18,9 @@ public:
 
     void readMasterData(string filename);
     //reads all of the data from the master file 
+
+    void exportMasterData(string filename);
+    //exports all of the current master data to the master file
 private:
     //TO DO put the dynamic array here
     //variable for the appointment array
