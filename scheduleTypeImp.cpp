@@ -10,7 +10,7 @@ void scheduleType::readMasterData(string filename) {
 	ifstream inData;
 	inData.open(filename);
 	if (!file) {
-        std::cerr << "Error opening file: " << filename << std::endl;
+        std::cerr << "Error opening masterfile: " << filename << std::endl;
         return;
     	}
 	//file name should be the masterfile
@@ -37,7 +37,7 @@ void scheduleType::exportMasterData(string filename) {
 	outData.open(filename);
 	//file name should be the masterfile
 	if (!file) {
-        std::cerr << "Error opening file: " << filename << std::endl;
+        std::cerr << "Error opening masterfile: " << filename << std::endl;
         return;
     	}
 	outData << adminName << endl << adminPassword << endl << endl;
