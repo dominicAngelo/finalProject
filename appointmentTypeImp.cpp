@@ -12,3 +12,6 @@ void appointmentType::changeDescription(string desc) {
 	description = desc;
 	//changes the description to the string in the parameter
 }
+bool appointmentType::isEmpty() const {
+    return description.empty();  // or check date fields if you prefer
+}
