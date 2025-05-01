@@ -4,7 +4,9 @@
 
 #include "scheduleType.h"
 
-int main() {
+scheduleType scheduleBook;
 
+int main() {
+    
     return 0;
 }
