@@ -1,3 +1,6 @@
+#infdef ordered_list
+#define ordered_list
+
 #include "arrayListType.h"
 
 class orderedArrayListType: public arrayListType
