@@ -2,7 +2,7 @@
 #include "appointmentType.h"
 #include "orderedArrayListType.h"
 
-class ScheduleType {
+class scheduleType {
 
     //public variables, only included the array
 public:
