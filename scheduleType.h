@@ -26,12 +26,21 @@ public:
     //creates the account array
 
     void nonexistentFile(const std::string& filename);
+    //checks if the file exists
 
     void login();
+    //handles logging in
+
+    void loadAllData();
+    //admin only. loads all of the account data from their files into their classes
+    void addGroupAppointment();
+    //admin only. adds an appointment to several account's appointment books
 
 private:
     accountType *accounts;
     //variable for the accounts array
     string adminName;
     string adminPassword;
+    string currentAccount;
+    bool isAdmin;
 };
