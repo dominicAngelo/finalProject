@@ -24,6 +24,11 @@ public:
 
     void createAccountBook();
     //creates the account array
+
+    void nonexistentFile(const std::string& filename);
+
+    void login();
+
 private:
     accountType *accounts;
     //variable for the accounts array
