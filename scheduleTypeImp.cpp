@@ -6,7 +6,8 @@ void scheduleType::readMasterData(std::string filename) {
     std::ifstream file(filename);
     if (!file) {
         std::cerr << "Error opening file: " << filename << std::endl;
-        return;
+        nonexistentFile(filename);
+        std::ifstream file(filename);
     }
 
     int y, m, d;
@@ -32,9 +33,9 @@ void scheduleType::nonexistentFile(const std::string& filename) {
         // File does not exist, create it
         std::ofstream newFile(filename);
         if (newFile) {
-            std::cout << "Master file created: " << filename << std::endl;
+            std::cout << filename << " created" << std::endl;
         } else {
-            std::cerr << "Error creating master file: " << filename << std::endl;
+            std::cerr << "Error creating: " << filename << std::endl;
         }
     } else {
         std::cout << "Master file already exists: " << filename << std::endl;
