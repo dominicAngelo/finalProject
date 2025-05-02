@@ -18,6 +18,9 @@ public:
 
 	void deleteAppointment();
 	//remove an appointment from the appointments list
+
+	void normalMenu();
+	//added a public normal user menu
 protected:
 	appointmentType *appointments;
 	//pointer holding the appointments array
