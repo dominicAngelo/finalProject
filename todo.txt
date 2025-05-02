@@ -6,7 +6,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Appointments (created)
 -Schedule book (created)
 -Accounts (created)
--Admin account (created)
+-Admin account (merged into schedule book)
 -(Circular lists (N/A, changed to dynamic arrays))
 -Dynamic arrays (in progress. inheritance issues being sorted)
 
@@ -14,7 +14,7 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Appointments (created, but may need some additions)
 -Schedule book (created, but empty)
 -Accounts (created, but empty)
--Admin account (created)
+-Admin account (merged into schedule book)
 -(Circular lists (N/A, changed to dynamic arrays))
 -Dynamic arrays (finished)
 
@@ -25,14 +25,16 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Design methods for:
 -Appointments 
 -Accounts
--Admin
+-Admin (merged into schedule book)
 -Schedule book (in progress)
 
 -Create password handler (should be a method in the schedule book file)
 
 -Create menu for normal accounts
--Create menu for admin account
+-Create menu for admin account 
 
--Add logic to schedule type to create a master file if none exists
+-Add logic to schedule type to create a master file if none exists (on going)
 
--Delete the remaining Cmake files
+-Delete the remaining Cmake files (finished)
+
+-When the master file is loaded, the accountNum integer needs to be updated everytime account info is loaded
