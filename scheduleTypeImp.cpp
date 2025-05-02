@@ -10,15 +10,12 @@ void scheduleType::readMasterData(std::string filename) {
         std::ifstream file(filename);
     }
 
-    int y, m, d;
-    std::string desc, dummy;
+    std::string lname, password , dummy;
 
-    while (file >> y >> m >> d) {
-        file >> std::ws;
-        std::getline(file, dummy);
-        //dummy getline to eat up the newline
-        std::getline(file, desc);
-        appendArray(y, m, d, desc);
+    while (!file.eof()) {
+        std::getline(file, lname);
+        std::getline(file, password);
+        //here should be the code to add the above info to the relevant arrays
     }
 
     file.close();
