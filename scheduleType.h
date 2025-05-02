@@ -43,6 +43,8 @@ public:
 private:
     accountType *accounts;
     //variable for the accounts array
+    int accountNum;
+    //variable for the number of accounts
     string adminName;
     string adminPassword;
     string currentAccount;
