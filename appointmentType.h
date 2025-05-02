@@ -30,6 +30,9 @@ private:
 	int year;
 	int month;
 	int day;
+	int minute;
+	int hour;
+	int second;
 	int id;
 	string description;
 };
