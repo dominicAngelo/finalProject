@@ -46,3 +46,14 @@ void scheduleType::exportMasterData(string filename) {
 	}
 	outData.close();
 }
+void login() {
+    // Example login function
+    std::cout << "Enter Username." << std::endl;
+    std::string username;
+    // There should be a function to check if the username is valid.
+    std::cin >> username;
+    std::cout << "Enter Password." << std::endl;
+    std::string password;
+    // There should be a function to check if the password is valid.
+    std::cin >> password;
+}
