@@ -1,51 +1,46 @@
-#include <fstream>
 #include "scheduleType.h"
+#include <fstream>
+#include <iostream>
 
-using namespace std;
-
-void scheduleType::readMasterData(string filename) {
-	string placeholderNamesArray[100];
-	string placeholderPasswordsArray[100];
-	//this data is a placeholder until the dynamic arrays are implimented 
-	ifstream inData;
-	inData.open(filename);
-	if (!file) {
-        std::cerr << "Error opening masterfile: " << filename << std::endl;
+void scheduleType::readMasterData(std::string filename) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "Error opening file: " << filename << std::endl;
         return;
-    	}
-	//file name should be the masterfile
-	inData >> adminName >> adminPassword;
-	//the data in the files should contain the last name, the passwords, and have no spaces. 
-	int i = 0;
-	while (!inData.eof() and (i < 100)) {
-		inData >> placeholderNamesArray[i] >> placeholderPasswordsArray[i];
-		i++;
-	}
-	if (i < 100) {
-		cout << "Too much data. Excess accounts have been lost";
-	}
-	inData.close();
+    }
+
+    int y, m, d;
+    std::string desc;
+
+    while (file >> y >> m >> d) {
+        file >> std::ws;
+        std::getline(file, desc);
+        appendArray(y, m, d, desc);
+    }
+
+    file.close();
 }
 
-void scheduleType::exportMasterData(string filename) {
-	string placeholderNamesArray[100];
-	string placeholderPasswordsArray[100];
-	//this data is a placeholder until the dynamic arrays are implimented 
-	int length = 5;
-	//length should be replaced with the int keeping track of the length of the account array as soon as possible
-	ofstream outData;
-	outData.open(filename);
-	//file name should be the masterfile
-	if (!file) {
-        std::cerr << "Error opening masterfile: " << filename << std::endl;
-        return;
-    	}
-	outData << adminName << endl << adminPassword << endl << endl;
-	for (int i = 0; i < length; i++) {
-		outData << placeholderNamesArray[i] << endl << placeholderPasswordsArray << endl << endl;
-	}
-	outData.close();
+void scheduleType::appendArray(int year, int month, int day, const std::string& description) {
+    // Example implementation
+    std::cout << "Appending: " << year << "-" << month << "-" << day << ": " << description << std::endl;
 }
+
+void scheduleType::nonexistentFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file) {
+        // File does not exist, create it
+        std::ofstream newFile(filename);
+        if (newFile) {
+            std::cout << "Master file created: " << filename << std::endl;
+        } else {
+            std::cerr << "Error creating master file: " << filename << std::endl;
+        }
+    } else {
+        std::cout << "Master file already exists: " << filename << std::endl;
+    }
+}
+
 void login() {
     // Example login function
     std::cout << "Enter Username." << std::endl;
