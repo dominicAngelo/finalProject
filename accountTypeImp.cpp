@@ -3,7 +3,7 @@
 #include <fstream>
 
 void accountType::normalMenu() {
-    int choicel
+    int choice;
     do {
         std::cout << "\n=== User Menu ===\n";
         std::cout << "1. View Appointments\n";
