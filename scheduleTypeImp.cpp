@@ -2,6 +2,35 @@
 #include <fstream>
 #include <iostream>
 
+void ScheduleType::adminMenu() {
+    int choice;
+    do {
+        std::cout << "\n=== Admin Menu ===\n";
+        std::cout << "1. Load All Data\n";
+        std::cout << "2. Add Group Appointment\n";
+        std::cout << "3. Export Master Data\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Choose an option: ";
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1:
+            loadAllData();
+            break;
+        case 2:
+            addGroupAppointment():
+            break;
+        case 3:
+            exportMasterData("master.txt"); \\Use your actual filename
+            break;
+        case 4:
+            std::cout << "Exiting admin menu.\n";
+        default:
+            std::cout << "Invalid choice.\n"
+        }
+    } while (choice != 4);
+}
+
 void scheduleType::readMasterData(std::string filename) {
     std::ifstream file(filename);
     if (!file) {
