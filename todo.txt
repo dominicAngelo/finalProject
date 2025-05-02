@@ -37,4 +37,4 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 
 -Delete the remaining Cmake files (finished)
 
--When the master file is loaded, the accountNum integer needs to be updated everytime account info is loaded
+-When the master file is loaded, the accountNum integer needs to be updated everytime account info is loaded (done)
