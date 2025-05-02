@@ -2,6 +2,35 @@
 #include <iostream>
 #include <fstream>
 
+void accountType::normalMenu() {
+    int choicel
+    do {
+        std::cout << "\n=== User Menu ===\n";
+        std::cout << "1. View Appointments\n";
+        std::cout << "2. Add Appointment\n";
+        std::cout << "3. Delete Appointment\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Choose an option: ";
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1:
+            std::cout << "Feature not implemented yet.\n";
+            break;
+        case 2:
+            addAppointment():
+            break;
+        case 3:
+            deleteAppointment();
+            break;
+        case 4:
+            std::cout << "Goodbye!\n";
+        default:
+            std::cout << "Invalid choice.\n"
+        }
+    } while (choice != 4);
+}
+
 void accountType::readData() {
     std::string filename = fname + "_" + lname + ".txt";
     std::ifstream file(filename);
