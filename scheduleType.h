@@ -31,8 +31,12 @@ public:
     void login();
     //handles logging in
 
+    int lNameSearch();
+    //searches for a last name in the accounts array and returns the index. If none is found, it returns -1
+
     void loadAllData();
     //admin only. loads all of the account data from their files into their classes
+
     void addGroupAppointment();
     //admin only. adds an appointment to several account's appointment books
 
