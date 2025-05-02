@@ -53,6 +53,16 @@ void scheduleType::login() {
     std::cin >> password;
 }
 
+int scheduleType::lNameSearch(string searchName) {
+    for (int i = 0; i < accountNum; i++) {
+        if (accounts[i].lname == searchName) {
+            return i;
+        }
+    }
+    return -1;
+    //-1 should only be returned if the lastname is not found
+}
+
 void scheduleType::loadAllData() {
     if (isAdmin == false){
         return
