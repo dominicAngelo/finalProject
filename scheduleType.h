@@ -41,6 +41,8 @@ public:
     //admin only. adds an appointment to several account's appointment books
 
 private:
+    void adminMenu(); // Added: handles admin-only options
+    
     accountType *accounts;
     //variable for the accounts array
     int accountNum;
