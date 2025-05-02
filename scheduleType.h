@@ -31,7 +31,7 @@ public:
     void login();
     //handles logging in
 
-    int lNameSearch();
+    int lNameSearch(string searchName);
     //searches for a last name in the accounts array and returns the index. If none is found, it returns -1
 
     void loadAllData();
