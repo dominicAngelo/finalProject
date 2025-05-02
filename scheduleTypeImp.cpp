@@ -11,10 +11,12 @@ void scheduleType::readMasterData(std::string filename) {
     }
 
     int y, m, d;
-    std::string desc;
+    std::string desc, dummy;
 
     while (file >> y >> m >> d) {
         file >> std::ws;
+        std::getline(file, dummy);
+        //dummy getline to eat up the newline
         std::getline(file, desc);
         appendArray(y, m, d, desc);
     }
