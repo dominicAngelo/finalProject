@@ -41,7 +41,7 @@ void scheduleType::nonexistentFile(const std::string& filename) {
     }
 }
 
-void login() {
+void scheduleType::login() {
     // Example login function
     std::cout << "Enter Username." << std::endl;
     std::string username;
@@ -52,3 +52,45 @@ void login() {
     // There should be a function to check if the password is valid.
     std::cin >> password;
 }
+
+void scheduleType::loadAllData() {
+    if (isAdmin == false){
+        return
+            }
+    for (int i = 0; i < accountNum; i++){
+        accounts[i].loadData;
+        //loadData is a place holder for the method that will be put into the account class
+    }
+
+}
+    //admin only. loads all of the account data from their files into their classes
+void scheduleType::addGroupAppointment() {
+    string appointmentDetailsPlaceHolder;
+    string namePlaceHolder;
+        if (isAdmin == false){
+        return
+            }
+        cout << "Enter the appointment details";
+        cin >> appointmentDetailsPlaceHolder;
+    bool isDone = false;
+    
+    while (!isDone){
+        cout << "Enter the last name of the next person to be added to the group, or enter DONE to finish and send" << endl;
+        cin >> namePlaceHolder;
+        if (namePlaceHolder == "DONE"){
+            isDone = true;
+        }
+        else {
+            int index = scheduleType.lNameSearch(namePlaceHolder);
+            //the above is a place holder for the last name search method
+            if (index == -1){
+                cout << "Account does not exist" << endl;
+            }
+            else {
+                accounts[index].addAppointment(appointmentDetailsPlaceHolder);
+                cout << namePlaceHolder << " has had the appointment added to their appointment book" << endl;
+            }
+    }
+    //a while loop should be used to add a certain appointment to each account
+}
+    //admin only. adds an appointment to several account's appointment books
