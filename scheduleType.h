@@ -1,4 +1,4 @@
-include <iostream>
+#include <iostream>
 #include "accountType.h"
 #include "orderedArrayListType.h"
 
@@ -13,7 +13,7 @@ public:
     }
 
     //adds one appointment to the array after the function is provided with the necessary values
-    void appendArray(int y, int m, int d, string desc) {
+    void appendArray(int year, int month, int day, const std::string& description) {
     }
 
     void readMasterData(string filename);
@@ -42,8 +42,8 @@ public:
 
 private:
     void adminMenu(); // Added: handles admin-only options
-    
-    accountType *accounts;
+
+    accountType* accounts;
     //variable for the accounts array
     int accountNum;
     //variable for the number of accounts
