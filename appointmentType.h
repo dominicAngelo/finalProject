@@ -19,10 +19,12 @@ public:
 		description = "";
 	}
 	//default constructor
-	appointmentType(int y, int m, int d, string desc) {
-		year = y;
-		month = m;
+	appointmentType(int yr, int mon, int d, int hr, int min, string desc) {
+		year = yr;
+		month = mon;
 		day = d;
+		hour = hr;
+		minute = min;
 		description = desc;
 	}
 	//constructor with parameters
@@ -32,7 +34,6 @@ private:
 	int day;
 	int minute;
 	int hour;
-	int second;
 	int id;
 	string description;
 };
