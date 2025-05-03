@@ -1,89 +1,38 @@
-#include "accountType.h"
-#include <iostream>
-#include <fstream>
+#ifndef account_test;
+#define account_test
+using namespace std;
 
-void accountType::normalMenu() {
-    int choice;
-    int yr, mon, day, hr, min;
-    std::string desc;
+#include "appointmentType.h"
+#include "orderedArrayListType.h"
 
-    do {
-        std::cout << "\n=== User Menu ===\n";
-        std::cout << "1. View Appointments\n";
-        std::cout << "2. Add Appointment\n";
-        std::cout << "3. Delete Appointment\n";
-        std::cout << "4. Exit\n";
-        std::cout << "Choose an option: ";
-        std::cin >> choice;
+class accountType {
+public:
+	void readData();
+	//reads the data from the file associated with the account
 
-        switch (choice) {
-        case 1:
-            std::cout << "Feature not implemented yet.\n";
-            break;
-        case 2:
-            cin >> yr >> mon >> day >> hr >> min;
-            //might need to add a dummy getline here
-            std::getline(cin >> std::ws, desc);
-            addAppointment(yr, mon, day, hr, min, desc);
-                break;
-        case 3:
-            deleteAppointment();
-            break;
-        case 4:
-            std::cout << "Goodbye!\n";
-        default:
-            std::cout << "Invalid choice.\n";
-        }
-    } while (choice != 4);
-}
+	void createAppointmentsBook();
+	//creates the account book array
 
-void accountType::readData() {
-    std::string filename = fname + "_" + lname + ".txt";
-    std::ifstream file(filename);
-    if (!file) {
-        std::cerr << "Unable to open account file: " << filename << std::endl;
-        return;
-    }
+	void addAppointment(int day, int month, int year, int hour, int minute, string desc);
+	//adds an appointment to the appointments list
 
-    int yr, mon, day, hr, min;
-    std::string desc;
-    int index = 0;
+	void deleteAppointment();
+	//remove an appointment from the appointments list
 
-    while (!file.eof()) {
-        file >> yr >> mon >> day >> hr >> min;
-        //might need to add a dummy getline here
-        std::getline(file >> std::ws, desc);
-        if (index < 100) {
-            appointments[index] = appointmentType(yr, mon, day, hr, min, desc);
-            index++;
-        }
-    }
+	void loadData();
+	//loads account data
 
-    file.close();
-}
+	void normalMenu();
+	//added a public normal user menu
 
-void accountType::addAppointment(int day, int month, int year, int hour, int minute, string desc) {
+	string getLname() {
+		return lname;
+	}
+protected:
+	appointmentType* appointments;
+	//pointer holding the appointments array
+	string fname, lname;
+	//the name associated with the account. used to access it's file
+};
 
-    for (int i = 0; i < 100; i++) {
-        if (appointments[i].isEmpty()) {
-            appointments[i] = appointmentType(year, month, day, hour, minute, desc);
-            break;
-        }
-    }
-}
-
-void accountType::deleteAppointment() {
-    int index;
-    std::cout << "Enter index of appointment to delete (0–99): ";
-    std::cin >> index;
-    if (index >= 0 && index < 100) {
-        appointments[index] = appointmentType();  // Reset to default
-    }
-    else {
-        std::cerr << "Invalid index.\n";
-    }
-}
-
-void loadData() {
-
-}
+#endif
