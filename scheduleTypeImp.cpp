@@ -74,9 +74,28 @@ void scheduleType::readMasterData(std::string filename) {
     file.close();
 }
 
-void scheduleType::appendArray(int year, int month, int day, const std::string& description) {
-    // Example implementation
-    std::cout << "Appending: " << year << "-" << month << "-" << day << ": " << description << std::endl;
+ void scheduleType::appendList(accountType account) {
+     accounts[accountNum] = account;
+     accountNum++;
+ }
+
+void scheduleType::removeList(int location){
+    if (location <0 || location >= length)
+        cout << "The location of the item to be removed " << "is out of range." << endl;
+    else
+    {
+        for (int i = location; i < length - 1; i++)
+            list[i] = list[i+1];
+        length--;
+    }
+}
+
+void scheduleType::print() const{
+    {
+    for (int i = 0; i < length; i++)
+        cout << list[i] << " ";
+    cout << endl;
+    }
 }
 
 void scheduleType::nonexistentFile(const std::string& filename) {
