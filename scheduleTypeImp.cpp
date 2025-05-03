@@ -9,6 +9,7 @@ void ScheduleType::adminMenu() {
         std::cout << "1. Load All Data\n";
         std::cout << "2. Add Group Appointment\n";
         std::cout << "3. Export Master Data\n";
+        std::cout << "4. Modify specific account's appointments\n";
         std::cout << "4. Exit\n";
         std::cout << "Choose an option: ";
         std::cin >> choice;
@@ -23,8 +24,30 @@ void ScheduleType::adminMenu() {
         case 3:
             exportMasterData("master.txt"); \\Use your actual filename
             break;
-        case 4:
+        case 4: {
+            std::cout << "\n=== Account List ===\n";
+            for (int i = 0; i < accountNum; ++i) {
+                std::cout << i + 1 << ". " << accounts[i].lname << std::endl;
+            }
+            
+            int accountChoice;
+            std::cout << "Select an account by number: ";
+            std::cin >> accountChoice;
+            if (accountChoice < 1 || accountChoice > accountNum) {
+                std::cout << "Invalid account selection.\n";
+            } else {
+                // simulate login as that account
+                currentAccount = accounts[accountChoice - 1].lname;
+                isAdmin = false; // treat this as a user, not admin
+                accounts[accountChoice - 1].userMenu(); // assumes userMenu exists
+                isAdmin = true; // reset admin flag after done
+            }
+            break;
+        }
+            
+        case 5:
             std::cout << "Exiting admin menu.\n";
+            break;
         default:
             std::cout << "Invalid choice.\n"
         }
