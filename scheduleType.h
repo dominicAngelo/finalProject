@@ -12,12 +12,16 @@ public:
     void initArray() {
     }
 
-    //adds one appointment to the array after the function is provided with the necessary values
-    void appendArray(int year, int month, int day, const std::string& description) {
-    }
-
     void readMasterData(string filename);
     //reads all of the data from the master file 
+
+    void appendList(accountType account);
+    //Adds things to the array
+
+    void removeList(int location);
+    //Removes things from the array
+
+    void printList() const;
 
     void exportMasterData(string filename);
     //exports all of the current master data to the master file
