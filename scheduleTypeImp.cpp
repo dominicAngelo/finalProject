@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 
-void ScheduleType::adminMenu() {
+void scheduleType::adminMenu() {
     int choice;
     do {
         std::cout << "\n=== Admin Menu ===\n";
@@ -19,37 +19,38 @@ void ScheduleType::adminMenu() {
             loadAllData();
             break;
         case 2:
-            addGroupAppointment():
-            break;
+            addGroupAppointment();
+                break;
         case 3:
-            exportMasterData("master.txt"); \\Use your actual filename
-            break;
+            exportMasterData("master.txt"); //Use your actual filename
+                break;
         case 4: {
             std::cout << "\n=== Account List ===\n";
             for (int i = 0; i < accountNum; ++i) {
-                std::cout << i + 1 << ". " << accounts[i].lname << std::endl;
+                std::cout << i + 1 << ". " << accounts[i].getLname() << std::endl;
             }
-            
+
             int accountChoice;
             std::cout << "Select an account by number: ";
             std::cin >> accountChoice;
             if (accountChoice < 1 || accountChoice > accountNum) {
                 std::cout << "Invalid account selection.\n";
-            } else {
+            }
+            else {
                 // simulate login as that account
-                currentAccount = accounts[accountChoice - 1].lname;
+                currentAccount = accounts[accountChoice - 1].getLname();
                 isAdmin = false; // treat this as a user, not admin
-                accounts[accountChoice - 1].userMenu(); // assumes userMenu exists
+                accounts[accountChoice - 1].normalMenu();
                 isAdmin = true; // reset admin flag after done
             }
             break;
         }
-            
+
         case 5:
             std::cout << "Exiting admin menu.\n";
             break;
         default:
-            std::cout << "Invalid choice.\n"
+            std::cout << "Invalid choice.\n";
         }
     } while (choice != 5);
 }
@@ -62,7 +63,7 @@ void scheduleType::readMasterData(std::string filename) {
         std::ifstream file(filename);
     }
 
-    std::string lname, password , dummy;
+    std::string lname, password, dummy;
 
     while (!file.eof()) {
         std::getline(file, lname);
@@ -85,10 +86,12 @@ void scheduleType::nonexistentFile(const std::string& filename) {
         std::ofstream newFile(filename);
         if (newFile) {
             std::cout << filename << " created" << std::endl;
-        } else {
+        }
+        else {
             std::cerr << "Error creating: " << filename << std::endl;
         }
-    } else {
+    }
+    else {
         std::cout << "Master file already exists: " << filename << std::endl;
     }
 }
@@ -107,7 +110,7 @@ void scheduleType::login() {
 
 int scheduleType::lNameSearch(string searchName) {
     for (int i = 0; i < accountNum; i++) {
-        if (accounts[i].lname == searchName) {
+        if (accounts[i].getLname() == searchName) {
             return i;
         }
     }
@@ -116,43 +119,43 @@ int scheduleType::lNameSearch(string searchName) {
 }
 
 void scheduleType::loadAllData() {
-    if (isAdmin == false){
-        return
-            }
-    for (int i = 0; i < accountNum; i++){
-        accounts[i].loadData;
-        //loadData is a place holder for the method that will be put into the account class
+    if (isAdmin == false) {
+        return;
+    }
+    for (int i = 0; i < accountNum; i++) {
+        accounts[i].loadData();
     }
 
 }
-    //admin only. loads all of the account data from their files into their classes
+//admin only. loads all of the account data from their files into their classes
 void scheduleType::addGroupAppointment() {
-    string appointmentDetailsPlaceHolder;
+    string descPlaceHolder;
     string namePlaceHolder;
-        if (isAdmin == false){
-        return
-            }
-        cout << "Enter the appointment details";
-        cin >> appointmentDetailsPlaceHolder;
+    int year, month, day, hour, minute;
+    if (isAdmin == false) {
+        return;
+    }
+    cout << "Enter the appointment details";
+    cin >> descPlaceHolder >> namePlaceHolder >> year >> month >> day >> hour >> minute;
     bool isDone = false;
-    
-    while (!isDone){
+
+    while (!isDone) {
         cout << "Enter the last name of the next person to be added to the group, or enter DONE to finish and send" << endl;
         cin >> namePlaceHolder;
-        if (namePlaceHolder == "DONE"){
+        if (namePlaceHolder == "DONE") {
             isDone = true;
         }
         else {
-            int index = scheduleType.lNameSearch(namePlaceHolder);
+            int index = lNameSearch(namePlaceHolder);
             //the above is a place holder for the last name search method
-            if (index == -1){
+            if (index == -1) {
                 cout << "Account does not exist" << endl;
             }
             else {
-                accounts[index].addAppointment(appointmentDetailsPlaceHolder);
+                accounts[index].addAppointment(year, month, day, hour, minute, descPlaceHolder);
                 cout << namePlaceHolder << " has had the appointment added to their appointment book" << endl;
             }
+        }
+        //a while loop should be used to add a certain appointment to each account
     }
-    //a while loop should be used to add a certain appointment to each account
-}
     //admin only. adds an appointment to several account's appointment books
