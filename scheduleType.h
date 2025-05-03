@@ -22,6 +22,7 @@ public:
     //Removes things from the array
 
     void printList() const;
+    //Prints the array
 
     void exportMasterData(string filename);
     //exports all of the current master data to the master file
