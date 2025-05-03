@@ -4,6 +4,9 @@
 
 void accountType::normalMenu() {
     int choice;
+    int yr, mon, day, hr, min;
+    std::string desc;
+
     do {
         std::cout << "\n=== User Menu ===\n";
         std::cout << "1. View Appointments\n";
@@ -18,15 +21,18 @@ void accountType::normalMenu() {
             std::cout << "Feature not implemented yet.\n";
             break;
         case 2:
-            addAppointment():
-            break;
+            cin >> yr >> mon >> day >> hr >> min;
+            //might need to add a dummy getline here
+            std::getline(cin >> std::ws, desc);
+            addAppointment(yr, mon, day, hr, min, desc);
+                break;
         case 3:
             deleteAppointment();
             break;
         case 4:
             std::cout << "Goodbye!\n";
         default:
-            std::cout << "Invalid choice.\n"
+            std::cout << "Invalid choice.\n";
         }
     } while (choice != 4);
 }
@@ -39,14 +45,16 @@ void accountType::readData() {
         return;
     }
 
-    int y, m, d;
+    int yr, mon, day, hr, min;
     std::string desc;
     int index = 0;
 
-    while (file >> y >> m >> d) {
+    while (!file.eof()) {
+        file >> yr >> mon >> day >> hr >> min;
+        //might need to add a dummy getline here
         std::getline(file >> std::ws, desc);
         if (index < 100) {
-            appointments[index] = appointmentType(y, m, d, desc);
+            appointments[index] = appointmentType(yr, mon, day, hr, min, desc);
             index++;
         }
     }
@@ -54,19 +62,11 @@ void accountType::readData() {
     file.close();
 }
 
-void accountType::addAppointment() {
-    int y, m, d;
-    std::string desc;
-
-    std::cout << "Enter year, month, day: ";
-    std::cin >> y >> m >> d;
-    std::cin.ignore();  // Ignore newline
-    std::cout << "Enter description: ";
-    std::getline(std::cin, desc);
+void accountType::addAppointment(int day, int month, int year, int hour, int minute, string desc) {
 
     for (int i = 0; i < 100; i++) {
         if (appointments[i].isEmpty()) {
-            appointments[i] = appointmentType(y, m, d, desc);
+            appointments[i] = appointmentType(year, month, day, hour, minute, desc);
             break;
         }
     }
@@ -78,8 +78,13 @@ void accountType::deleteAppointment() {
     std::cin >> index;
     if (index >= 0 && index < 100) {
         appointments[index] = appointmentType();  // Reset to default
-    } else {
+    }
+    else {
         std::cerr << "Invalid index.\n";
     }
+}
+
+void loadData() {
+
 }
 
