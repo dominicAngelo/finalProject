@@ -51,7 +51,7 @@ void ScheduleType::adminMenu() {
         default:
             std::cout << "Invalid choice.\n"
         }
-    } while (choice != 4);
+    } while (choice != 5);
 }
 
 void scheduleType::readMasterData(std::string filename) {
