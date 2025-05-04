@@ -1,3 +1,4 @@
+
 #include "scheduleType.h"
 #include <fstream>
 #include <iostream>
@@ -14,20 +15,23 @@ void scheduleType::adminMenu() {
         std::cout << "Choose an option: ";
         std::cin >> choice;
 
+        accountType dummy;
+
         switch (choice) {
         case 1:
             loadAllData();
             break;
         case 2:
             addGroupAppointment();
-                break;
+            break;
         case 3:
             exportMasterData("master.txt"); //Use your actual filename
-                break;
+            break;
         case 4: {
             std::cout << "\n=== Account List ===\n";
             for (int i = 0; i < accountNum; ++i) {
-                std::cout << i + 1 << ". " << accounts[i].getLname() << std::endl;
+                accounts.retrieveAt(i, dummy);
+                std::cout << i + 1 << ". " << dummy.getLname() << std::endl;
             }
 
             int accountChoice;
@@ -38,9 +42,10 @@ void scheduleType::adminMenu() {
             }
             else {
                 // simulate login as that account
-                currentAccount = accounts[accountChoice - 1].getLname();
+                accounts.retrieveAt(accountChoice - 1, dummy);
+                currentAccount = dummy.getLname();
                 isAdmin = false; // treat this as a user, not admin
-                accounts[accountChoice - 1].normalMenu();
+                dummy.normalMenu();
                 isAdmin = true; // reset admin flag after done
             }
             break;
@@ -74,27 +79,28 @@ void scheduleType::readMasterData(std::string filename) {
     file.close();
 }
 
- void scheduleType::appendList(accountType account) {
-     accounts[accountNum] = account;
-     accountNum++;
- }
+void scheduleType::appendList(accountType account) {
+    accounts.insert(account);
+    accountNum++;
+}
 
-void scheduleType::removeList(int location){
-    if (location <0 || location >= length)
+void scheduleType::removeList(int location) {
+    if (location < 0 || location >= accountNum)
         cout << "The location of the item to be removed " << "is out of range." << endl;
     else
     {
-        for (int i = location; i < length - 1; i++)
-            list[i] = list[i+1];
-        length--;
+        accounts.removeAt(location);
     }
 }
 
-void scheduleType::print() const{
+void scheduleType::printAll() const {
     {
-    for (int i = 0; i < length; i++)
-        cout << list[i] << " ";
-    cout << endl;
+        for (int i = 0; i < accountNum; i++) {
+            accountType dummy;
+            accounts.retrieveAt(i, dummy);
+            cout << dummy.getLname() << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -119,17 +125,32 @@ void scheduleType::login() {
     // Example login function
     std::cout << "Enter Username." << std::endl;
     std::string username;
-    // There should be a function to check if the username is valid.
     std::cin >> username;
+    while (names.seqSearch(username) == -1) {
+        std::cout << "Invalid username." << std::endl;
+        std::cout << "Enter Username." << std::endl;
+        std::string username;
+        std::cin >> username;
+    }
+    int nameIndex = names.seqSearch(username);
     std::cout << "Enter Password." << std::endl;
     std::string password;
     // There should be a function to check if the password is valid.
     std::cin >> password;
+    string currentPassword;
+    passwords.retrieveAt(nameIndex, currentPassword);
+    while (currentPassword != password) {
+        std::cout << "Bad password" << std::endl;
+        std::cout << "Enter Password." << std::endl;
+        std::cin >> password;
+    }
 }
 
 int scheduleType::lNameSearch(string searchName) {
+    accountType dummy;
     for (int i = 0; i < accountNum; i++) {
-        if (accounts[i].getLname() == searchName) {
+        accounts.retrieveAt(i, dummy);
+        if (dummy.getLname() == searchName) {
             return i;
         }
     }
@@ -141,8 +162,10 @@ void scheduleType::loadAllData() {
     if (isAdmin == false) {
         return;
     }
+    accountType dummy;
     for (int i = 0; i < accountNum; i++) {
-        accounts[i].loadData();
+        accounts.retrieveAt(i, dummy);
+        dummy.readData();
     }
 
 }
@@ -171,10 +194,25 @@ void scheduleType::addGroupAppointment() {
                 cout << "Account does not exist" << endl;
             }
             else {
-                accounts[index].addAppointment(year, month, day, hour, minute, descPlaceHolder);
+                accountType dummy;
+                accounts.retrieveAt(index, dummy);
+                dummy.addAppointment(year, month, day, hour, minute, descPlaceHolder);
+                accounts.replaceAt(index, dummy);
+                ;
                 cout << namePlaceHolder << " has had the appointment added to their appointment book" << endl;
             }
         }
         //a while loop should be used to add a certain appointment to each account
     }
     //admin only. adds an appointment to several account's appointment books
+}
+
+void scheduleType::exportMasterData(string filename) {
+
+}
+//exports all of the current master data to the master file
+
+void scheduleType::createAccountBook() {
+
+}
+//creates the account array
