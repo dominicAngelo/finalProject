@@ -1,3 +1,6 @@
+#ifndef schedule_test
+#define schedule_test
+
 #include <iostream>
 #include "accountType.h"
 #include "orderedArrayListType.h"
@@ -21,8 +24,8 @@ public:
     void removeList(int location);
     //Removes things from the array
 
-    void printList() const;
-    //Prints the array
+    void printAll() const;
+    //Prints all of the account names
 
     void exportMasterData(string filename);
     //exports all of the current master data to the master file
@@ -48,7 +51,9 @@ public:
 private:
     void adminMenu(); // Added: handles admin-only options
 
-    accountType* accounts;
+    orderedArrayListType<accountType> accounts;
+    orderedArrayListType<string> names;
+    orderedArrayListType<string> passwords;
     //variable for the accounts array
     int accountNum;
     //variable for the number of accounts
@@ -57,3 +62,5 @@ private:
     string currentAccount;
     bool isAdmin;
 };
+
+#endif
