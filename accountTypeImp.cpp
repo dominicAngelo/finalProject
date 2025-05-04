@@ -27,7 +27,16 @@ void accountType::normalMenu() {
             addAppointment(yr, mon, day, hr, min, desc);
                 break;
         case 3:
-            deleteAppointment();
+            int index;
+            std::cout << "Enter index of appointment to delete (0–99): ";
+            std::cin >> index;
+            if (index >= 0 && index < 100) {
+                deleteAppointment(index);
+            }
+            else {
+                std::cerr << "Invalid index.\n";
+            }
+            
             break;
         case 4:
             std::cout << "Goodbye!\n";
@@ -51,10 +60,11 @@ void accountType::readData() {
 
     while (!file.eof()) {
         file >> yr >> mon >> day >> hr >> min;
+        appointmentType temp(yr, mon, day, hr, min, desc);
         //might need to add a dummy getline here
         std::getline(file >> std::ws, desc);
         if (index < 100) {
-            appointments[index] = appointmentType(yr, mon, day, hr, min, desc);
+            appointments.insert(temp);
             index++;
         }
     }
@@ -63,28 +73,10 @@ void accountType::readData() {
 }
 
 void accountType::addAppointment(int day, int month, int year, int hour, int minute, string desc) {
-
-    for (int i = 0; i < 100; i++) {
-        if (appointments[i].isEmpty()) {
-            appointments[i] = appointmentType(year, month, day, hour, minute, desc);
-            break;
-        }
-    }
+    appointmentType dummy(year, month, day, hour, minute, desc);
+    appointments.insert(dummy);
 }
 
-void accountType::deleteAppointment() {
-    int index;
-    std::cout << "Enter index of appointment to delete (0–99): ";
-    std::cin >> index;
-    if (index >= 0 && index < 100) {
-        appointments[index] = appointmentType();  // Reset to default
-    }
-    else {
-        std::cerr << "Invalid index.\n";
-    }
+void accountType::deleteAppointment(int index) {
+    appointments.removeAt(index);
 }
-
-void loadData() {
-
-}
-
