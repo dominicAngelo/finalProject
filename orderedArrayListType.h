@@ -1,5 +1,6 @@
 #ifndef ordered_list
 #define ordered_list
+#include "arrayListType.h"
 
 template <class elemType>
 class orderedArrayListType: public arrayListType<elemType>
