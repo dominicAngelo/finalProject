@@ -8,12 +8,12 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 -Accounts (created)
 -Admin account (merged into schedule book)
 -(Circular lists (N/A, changed to dynamic arrays))
--Dynamic arrays (in progress. inheritance issues being sorted)
+-Dynamic arrays (finished)
 
 -Create and fill out implimentation files for:
 -Appointments (created, but may need some additions)
--Schedule book (created, but empty)
--Accounts (created, but empty)
+-Schedule book (in progress)
+-Accounts (in progress)
 -Admin account (merged into schedule book)
 -(Circular lists (N/A, changed to dynamic arrays))
 -Dynamic arrays (finished)
