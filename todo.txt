@@ -30,8 +30,8 @@ When an item is finished, or modified, note this in parenthesis (I will give som
 
 -Create password handler (should be a method in the schedule book file)
 
--Create menu for normal accounts
--Create menu for admin account 
+-Create menu for normal accounts (added accounts for appointmentType)
+-Create menu for admin account (added accounts for scheduleType)
 
 -Add logic to schedule type to create a master file if none exists (on going)
 
