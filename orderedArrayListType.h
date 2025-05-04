@@ -3,21 +3,21 @@
 #include "arrayListType.h"
 
 template <class elemType>
-class orderedArrayListType: public arrayListType<elemType>
+class orderedArrayListType : public arrayListType<elemType>
 {
 public:
     void inserAt(int location, const elemType& insertItem);
     void insertEnd(const elemType& insertItem);
-    void replaceAt(int location, const elemType& rep Item);
+    void replaceAt(int location, const elemType& repItem);
     int seqSearch(const elemType& searchItem) const;
     void insert(const elemType& insertItem);
     void remove(const elemType& removeItem);
 
-    orderedArrayListType(int size = 100)
-}
+    orderedArrayListType(int size = 100);
+};
 
 template <class elemType>
-void orderedArrayListType<elemType>::inserAt(int location, const elemType& insertItem);
+void orderedArrayListType<elemType>::inserAt(int location, const elemType& insertItem)
 {
     if (location < 0 || location >= maxSize)
         cout << "The position of the item to be inserted is out of range." << endl;
@@ -26,7 +26,7 @@ void orderedArrayListType<elemType>::inserAt(int location, const elemType& inser
     else
     {
         for (int i = length; i > location; i--)
-            list[i] = list [i - 1];
+            list[i] = list[i - 1];
         list[location] = insertItem;
         length++;
     }
@@ -44,8 +44,8 @@ void orderedArrayListType<elemType>::insertEnd(const elemType& insertItem)
     }
 }
 
-tenplate <class elemType>
-int orderedArrayListType<elemType>::seqSearch(const elemType& searchItem)
+template <class elemType>
+int orderedArrayListType<elemType>::seqSearch(const elemType& searchItem) const
 {
     int loc;
     bool found = false;
@@ -74,17 +74,17 @@ void orderedArrayListType<elemType>::insert(const elemType& insertItem)
         int loc;
         bool found = false;
         for (loc = 0; loc < length; loc++)
-            {
-                if (list[loc] == insertItem
+        {
+            if (list[loc] == insertItem
                 {
                     found = true;
                     break;
                 }
-            }
+        }
         for (int i = length; i = loc; i--)
-            list[i] = list [i - 1];
-        list[loc] = insertItem;
-        length++;
+            list[i] = list[i - 1];
+            list[loc] = insertItem;
+            length++;
     }
 }
 
@@ -108,14 +108,14 @@ void orderedArrayListType<elemType>::remove(const elemType& removeItem)
 template <class elemType>
 void orderedArrayListType<elemType>::replaceAt(int location, const elemType& repItem)
 {
-    if (location < 0 || location >=length)
+    if (location < 0 || location >= length)
         cout << "The location of the item to be replaced is out of range." << endl;
     else
         list[location] = repItem;
 }
 
 template <class elemType>
-orderedArrayListType<elemType>::orderedArrayListType(int size):arrayListType<elemType>(size)
+orderedArrayListType<elemType>::orderedArrayListType(int size) :arrayListType<elemType>(size)
 {
 
 }
