@@ -16,6 +16,8 @@ public:
 		year = 0;
 		month = 0;
 		day = 0;
+		hour = 0;
+		minute = 0;
 		description = "";
 	}
 	//default constructor
@@ -34,7 +36,6 @@ private:
 	int day;
 	int minute;
 	int hour;
-	int id;
 	string description;
 };
 
