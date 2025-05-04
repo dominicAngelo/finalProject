@@ -34,6 +34,30 @@ protected:
 };
 
 template <class elemType>
+bool arrayListType<elemType>::isEmpty() const
+{
+    return (length == 0);
+}
+
+template <class elemType>
+bool arrayListType<elemType>::isFull() const
+{
+    return (length == maxSize);
+}
+
+template <class elemType>
+int arrayListType<elemType>::listSize() const
+{
+    return length;
+}
+
+template <class elemType>
+int arrayListType<elemType>::maxListSize() const
+{
+    return maxSize;
+}
+
+template <class elemType>
 void arrayListType<elemType>::print()const
 {
     for (int i = 0; i < length; i++)
@@ -54,7 +78,7 @@ bool arrayListType<elemType>::isItemAtEqual(int location, const elemType& item) 
 }
 
 template <class elemType>
-void arrayListType<elemType>::remove(int location)
+void arrayListType<elemType>::removeAt(int location)
 {
     if (location < 0 || location >= length)
         cout << "The location of the item to be removed it out of range." << endl;
@@ -76,6 +100,12 @@ void arrayListType<elemType>::retrieveAt(int location, elemType& retItem) const
 }
 
 template <class elemType>
+void arrayListType<elemType>::clearList()
+{
+    length = 0;
+}
+
+template <class elemType>
 arrayListType<elemType>::arrayListType(int size)
 {
     if (size <= 0)
@@ -93,6 +123,23 @@ template <class elemType>
 arrayListType<elemType>::~arrayListType()
 {
     delete [] list;
+}
+
+template <class elemType>
+const arrayListType<elemType>& arrayListType<elemType>::operator=(const arrayListType<elemType& otherList)
+{
+    if (this != &otherList)
+    {
+        delete [] list;
+        maxSize = otherList.maxSize;
+        length = otherList.length;
+
+        list = new elemType[maxSize];
+
+        for (int i = 0; i < length; i++)
+            list[i] = otherList.list[1]
+    }
+    return *this;
 }
 
 #endif
