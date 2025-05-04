@@ -6,7 +6,7 @@ class arrayListType
 {
 public:
     const arrayListType<elemType>&
-        operators=(const arrayListType<elemType>&);
+        operator=(const arrayListType<elemType&>);
     bool isEmpty() const;
     bool isFull() const;
     int listSize() const;
@@ -22,12 +22,11 @@ public:
     virtual int seqSearch(const elemType& searchItem) const = 0;
     virtual void remove(const elemType& removeItem) = 0;
 
-    arraListType(int size = 100);
-    arrayListType (const arrayListType<elemType>& otherList);
+    arrayListType(int size = 100);
     virtual ~arrayListType();
 
 protected:
-    elemType *list;
+    elemType* list;
     int length;
     int maxSize;
 
@@ -91,7 +90,7 @@ void arrayListType<elemType>::removeAt(int location)
 }
 
 template <class elemType>
-void arrayListType<elemType>::retrieveAt(int location, elemType& retItem) const
+void arrayListType<elemType>::retrieveAt(int location, const elemType& retItem) const
 {
     if (location < 0 || location >= length)
         cout << "The location of the item to be retrieved it out of range." << endl;
@@ -122,15 +121,15 @@ arrayListType<elemType>::arrayListType(int size)
 template <class elemType>
 arrayListType<elemType>::~arrayListType()
 {
-    delete [] list;
+    delete[] list;
 }
 
 template <class elemType>
-const arrayListType<elemType>& arrayListType<elemType>::operator=(const arrayListType<elemType& otherList)
+const arrayListType<elemType>& arrayListType<elemType>::operator=(const arrayListType<elemType&>)
 {
     if (this != &otherList)
     {
-        delete [] list;
+        delete[] list;
         maxSize = otherList.maxSize;
         length = otherList.length;
 
