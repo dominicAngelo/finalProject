@@ -2,40 +2,121 @@
 #define ordered_list
 
 template <class elemType>
-
-class orderedArrayListType: public arrayListType
+class orderedArrayListType: public arrayListType<elemType>
 {
 public:
-    const orderedArrayListType<elemType>&
-        operator=(const orderedArrayListType<elemType>&);
+    void inserAt(int location, const elemType& insertItem);
+    void insertEnd(const elemType& insertItem);
+    void replaceAt(int location, const elemType& rep Item);
+    int seqSearch(const elemType& searchItem) const;
+    void insert(const elemType& insertItem);
+    void remove(const elemType& removeItem);
 
-    bool isEmpty() const;
-    bool isFull() const;
-    int listSize() const; 
-    int maxListSize() const; 
-    void print() const;
-    bool isItemAtEqual(int location, const elemType& item) const;
-    virtual void insertAt(int location, const elemType& insertItem);
-    virtual void insertEnd(const elemType& insertItem);
-    void removeAt(int location);
-    void retrieveAt(int location, const elemType& retItem) const;
-    virtual void replaceAt(int location, int repItem);
-    void clearList();
-    virtual int seqSearch(const elemType& searchItem) const;
-    void insert(int insertItem);
-    virtual void remove(const elemType& removeItem);
-    orderedArrayListType(int size = 100);
-    orderedArrayListType (const orderedArrayListType<elemType>& otherList);
-    virtual ~orderedArrayListType();
+    orderedArrayListType(int size = 100)
+}
 
-protected:
-    elemType *list;
-    int length;
-    int maxSize;
+template <class elemType>
+void orderedArrayListType<elemType>::inserAt(int location, const elemType& insertItem);
+{
+    if (location < 0 || location >= maxSize)
+        cout << "The position of the item to be inserted is out of range." << endl;
+    else if (length >= maxSize)
+        cout << "Cannot insert in a full list. " << endl;
+    else
+    {
+        for (int i = length; i > location; i--)
+            list[i] = list [i - 1];
+        list[location] = insertItem;
+        length++;
+    }
+}
 
-};
+template <class elemType>
+void orderedArrayListType<elemType>::insertEnd(const elemType& insertItem)
+{
+    if (length >= maxSize)
+        cout << "Cannot insert in a full list." << endl;
+    else
+    {
+        list[length] = insertItem;
+        length++
+    }
+}
 
-#include "orderedArrayListType.cpp"
-//This is so I don't have to rewrite the entire thing into here
+tenplate <class elemType>
+int orderedArrayListType<elemType>::seqSearch(const elemType& searchItem)
+{
+    int loc;
+    bool found = false;
+
+    for (loc = 0; loc < length; loc++)
+        if (list[loc] == searchItem)
+        {
+            found = true;
+            break;
+        }
+    if (found)
+        return loc;
+    else
+        return -1;
+}
+
+template <class elemType>
+void orderedArrayListType<elemType>::insert(const elemType& insertItem)
+{
+    if (length == 0)
+        list[length++] = insertItem;
+    else if (length == maxSize)
+        cout << "Cannot insert in a full list." << endl;
+    else
+    {
+        int loc;
+        bool found = false;
+        for (loc = 0; loc < length; loc++)
+            {
+                if (list[loc] == insertItem
+                {
+                    found = true;
+                    break;
+                }
+            }
+        for (int i = length; i = loc; i--)
+            list[i] = list [i - 1];
+        list[loc] = insertItem;
+        length++;
+    }
+}
+
+template <class elemType>
+void orderedArrayListType<elemType>::remove(const elemType& removeItem)
+{
+    int loc;
+
+    if (length == 0)
+        cout << "Cannot delete from an empty list." << endl;
+    else
+    {
+        loc = seqSearch(removeItem);
+        if (loc != -1)
+            removeAt(loc);
+        else
+            cout << "The item to be deleted is not in the list." << endl;
+    }
+}
+
+template <class elemType>
+void orderedArrayListType<elemType>::replaceAt(int location, const elemType& repItem)
+{
+    if (location < 0 || location >=length)
+        cout << "The location of the item to be replaced is out of range." << endl;
+    else
+        list[location] = repItem;
+}
+
+template <class elemType>
+orderedArrayListType<elemType>::orderedArrayListType(int size):arrayListType<elemType>(size)
+{
+
+}
 
 #endif
