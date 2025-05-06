@@ -75,7 +75,7 @@ void orderedArrayListType<elemType>::insert(const elemType& insertItem)
         bool found = false;
         for (loc = 0; loc < length; loc++)
         {
-            if (list[loc] == insertItem
+            if (list[loc] == insertItem)
                 {
                     found = true;
                     break;
