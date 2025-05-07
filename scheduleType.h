@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "accountType.h"
-#include "orderedArrayListType.h"
 
 class scheduleType {
 
@@ -51,9 +50,6 @@ public:
 private:
     void adminMenu(); // Added: handles admin-only options
 
-    orderedArrayListType<accountType> accounts;
-    orderedArrayListType<string> names;
-    orderedArrayListType<string> passwords;
     //variable for the accounts array
     int accountNum;
     //variable for the number of accounts
