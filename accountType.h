@@ -6,6 +6,9 @@ using namespace std;
 
 class accountType {
 public:
+	void normalMenu();
+	//the menu function
+
 	void readData();
 	//reads the data from the file associated with the account
 
