@@ -1,8 +1,9 @@
 #ifndef account_test
 #define account_test
+#include <vector>
+
 using namespace std;
 
-#include "appointmentType.h"
 
 class accountType {
 public:
@@ -15,20 +16,19 @@ public:
 	void addAppointment(int day, int month, int year, int hour, int minute, string desc);
 	//adds an appointment to the appointments list
 
-
 	void deleteAppointment(int index);
 	//remove an appointment from the appointments list
 
-	void addAccount(string userName);
+	void addAccount(const string& userName);
 	//adds an account name to the accounts array
 
-	void removeAccount(int index);
+	void removeAccount(const string& userName);
 	//removes an account name from the accounts array
 
-	void addPassword(string password);
+	void addPassword(const string& password);
 	//adds a password to the passwords array
 
-	void removePassword(int index);
+	void removePassword(const string& password);
 	//removes a password from the passwords array
 
 	void normalMenu();
@@ -44,16 +44,27 @@ public:
 
 	}
 
-protected:
-	appointmentType appointments[20];
-	//pointer holding the appointments array
-	appointmentType accounts[20];
-	//pointer holding the accounts array
-	appointmentType passwords[20];
-	//pointer holding the passwords array
+private:
+	string *appointments;
+	//Pointer for the appointments array
 
+	int appointmentSize;
+	//This is for the appointment array size
+
+	string *accounts;
+	//Pointer for the accounts array
+
+	int accountsSize;
+	//This is for the accounts array size
+
+	string *passwords;
+	//Pointer for the passwords array
+
+	int passwordsSize;
+	//This is for the passwords array size
+		
 	string fname, lname;
-	//the name associated with the account. used to access it's file
+	//The name associated with the account. used to access it's file
 };
 
-#endif
+#endif#pragma once
