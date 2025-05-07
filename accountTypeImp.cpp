@@ -1,8 +1,13 @@
 #include "accountType.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <algorithm>
+
+#include "accountType.h"
 
 using namespace std;
+
 
 void accountType::normalMenu() {
     int choice;
@@ -27,7 +32,7 @@ void accountType::normalMenu() {
             //might need to add a dummy getline here
             getline(cin >> std::ws, desc);
             addAppointment(yr, mon, day, hr, min, desc);
-                break;
+            break;
         case 3:
             int index;
             cout << "Enter index of appointment to delete (0–99): ";
@@ -38,7 +43,7 @@ void accountType::normalMenu() {
             else {
                 cerr << "Invalid index.\n";
             }
-            
+
             break;
         case 4:
             cout << "Goodbye!\n";
@@ -81,4 +86,33 @@ void accountType::addAppointment(int day, int month, int year, int hour, int min
 
 void accountType::deleteAppointment(int index) {
     appointments.removeAt(index);
+}
+
+//The new and relevant code is down here, if someone would like to try and fix the push_back stuff
+void accountType::addAccount(const string& userName)
+{
+    accounts->push_back(userName);
+}
+
+void accountType::removeAccount(const string& userName)
+{
+    auto it = find(accounts->begin(), accounts->end(), userName);
+    if (it != accounts->end())
+    {
+        accounts->erase(it);
+    }
+}
+
+void accountType::addPassword(const string& password)
+{
+    accounts->push_back(password);
+}
+
+void accountType::removePassword(const string& password)
+{
+    auto it = find(passwords->begin(), passwords->end(), password);
+    if (it != passwords->end())
+    {
+        passwords->erase(it);
+    }
 }
