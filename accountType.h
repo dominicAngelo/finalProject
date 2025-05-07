@@ -45,19 +45,19 @@ public:
 	}
 
 private:
-	string *appointments;
+	vector<string>* appointments;
 	//Pointer for the appointments array
 
 	int appointmentSize;
 	//This is for the appointment array size
 
-	string *accounts;
+	vector<string>* accounts;
 	//Pointer for the accounts array
 
 	int accountsSize;
 	//This is for the accounts array size
 
-	string *passwords;
+	vector<string>* passwords;
 	//Pointer for the passwords array
 
 	int passwordsSize;
@@ -66,5 +66,3 @@ private:
 	string fname, lname;
 	//The name associated with the account. used to access it's file
 };
-
-#endif#pragma once
