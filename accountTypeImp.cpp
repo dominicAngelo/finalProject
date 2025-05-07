@@ -88,7 +88,6 @@ void accountType::deleteAppointment(int index) {
     appointments.removeAt(index);
 }
 
-//The new and relevant code is down here, if someone would like to try and fix the push_back stuff
 void accountType::addAccount(const string& userName)
 {
     accounts->push_back(userName);
@@ -105,6 +104,7 @@ void accountType::removeAccount(const string& userName)
 
 void accountType::addPassword(const string& password)
 {
+
     accounts->push_back(password);
 }
 
