@@ -2,67 +2,69 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
+
 void accountType::normalMenu() {
     int choice;
     int yr, mon, day, hr, min;
-    std::string desc;
+    string desc;
 
     do {
-        std::cout << "\n=== User Menu ===\n";
-        std::cout << "1. View Appointments\n";
-        std::cout << "2. Add Appointment\n";
-        std::cout << "3. Delete Appointment\n";
-        std::cout << "4. Exit\n";
-        std::cout << "Choose an option: ";
-        std::cin >> choice;
+        cout << "\n=== User Menu ===\n";
+        cout << "1. View Appointments\n";
+        cout << "2. Add Appointment\n";
+        cout << "3. Delete Appointment\n";
+        cout << "4. Exit\n";
+        cout << "Choose an option: ";
+        cin >> choice;
 
         switch (choice) {
         case 1:
-            std::cout << "Feature not implemented yet.\n";
+            cout << "Feature not implemented yet.\n";
             break;
         case 2:
             cin >> yr >> mon >> day >> hr >> min;
             //might need to add a dummy getline here
-            std::getline(cin >> std::ws, desc);
+            getline(cin >> std::ws, desc);
             addAppointment(yr, mon, day, hr, min, desc);
                 break;
         case 3:
             int index;
-            std::cout << "Enter index of appointment to delete (0–99): ";
-            std::cin >> index;
+            cout << "Enter index of appointment to delete (0–99): ";
+            cin >> index;
             if (index >= 0 && index < 100) {
                 deleteAppointment(index);
             }
             else {
-                std::cerr << "Invalid index.\n";
+                cerr << "Invalid index.\n";
             }
             
             break;
         case 4:
-            std::cout << "Goodbye!\n";
+            cout << "Goodbye!\n";
         default:
-            std::cout << "Invalid choice.\n";
+            cout << "Invalid choice.\n";
         }
     } while (choice != 4);
 }
 
 void accountType::readData() {
-    std::string filename = fname + "_" + lname + ".txt";
-    std::ifstream file(filename);
+    string filename = fname + "_" + lname + ".txt";
+    ifstream file(filename);
     if (!file) {
-        std::cerr << "Unable to open account file: " << filename << std::endl;
+        cerr << "Unable to open account file: " << filename << std::endl;
         return;
     }
 
     int yr, mon, day, hr, min;
-    std::string desc;
+    string desc;
     int index = 0;
 
     while (!file.eof()) {
         file >> yr >> mon >> day >> hr >> min;
         appointmentType temp(yr, mon, day, hr, min, desc);
         //might need to add a dummy getline here
-        std::getline(file >> std::ws, desc);
+        getline(file >> std::ws, desc);
         if (index < 100) {
             appointments.insert(temp);
             index++;
