@@ -1,68 +1,43 @@
-#ifndef account_test
-#define account_test
+#pragma once
+#ifndef NEWACCOUNTTYPE_H
+#define NEWACCOUNTTYPE_H
+
+#include <string>
 #include <vector>
 
 using namespace std;
-
-
-class accountType {
-public:
-	void normalMenu();
-	//the menu function
-
-	void readData();
-	//reads the data from the file associated with the account
-
-	void addAppointment(int day, int month, int year, int hour, int minute, string desc);
-	//adds an appointment to the appointments list
-
-	void deleteAppointment(int index);
-	//remove an appointment from the appointments list
-
-	void addAccount(const string& userName);
-	//adds an account name to the accounts array
-
-	void removeAccount(const string& userName);
-	//removes an account name from the accounts array
-
-	void addPassword(const string& password);
-	//adds a password to the passwords array
-
-	void removePassword(const string& password);
-	//removes a password from the passwords array
-
-	void normalMenu();
-	//added a public normal user menu
-
-	string getLname() {
-		return lname;
-	}
-
-	accountType() {
-		fname = "";
-		lname = "";
-
-	}
-
-private:
-	vector<string>* appointments;
-	//Pointer for the appointments array
-
-	int appointmentSize;
-	//This is for the appointment array size
-
-	vector<string>* accounts;
-	//Pointer for the accounts array
-
-	int accountsSize;
-	//This is for the accounts array size
-
-	vector<string>* passwords;
-	//Pointer for the passwords array
-
-	int passwordsSize;
-	//This is for the passwords array size
-		
-	string fname, lname;
-	//The name associated with the account. used to access it's file
+//This is the struct for Appointment, which holds the date and description variables of the program
+struct Appointment 
+{
+    string date;
+    string description;
 };
+
+class accountType 
+{
+public:
+    //These are the three arrays that are used in the program, with the Appointment struct being used in the appointments array
+    vector<string> usernames;
+    vector<string> passwords;
+    vector<Appointment> appointments;
+
+    //This is the member function to add an account, which prompts the user to enter their username and password
+    void addAccount(const string& username, const string& password);
+
+    //This is the member function to log in, which is similar to the above member except it checks the usernames and passwords arrays for things that match
+    bool login(const string& username, const string& password);
+
+    //This is the member function to add an appointment to the schedule array, which prompts you to add the date and description of the appointment
+    void addAppointment(const string& date, const string& description);
+
+    //This is the member function to remove an appointment from the array, which removes based on the date
+    void removeAppointment(const string& date);
+    
+    //This is the member function that prints the appointments array
+    void viewAppointments();
+
+    //This is the member function that sorts the appointments array by date
+    void sortAppointments();
+};
+
+#endif
