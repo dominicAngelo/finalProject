@@ -1,118 +1,49 @@
 #include "accountType.h"
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <algorithm>
-
-#include "accountType.h"
+#include <iostream>
 
 using namespace std;
 
-
-void accountType::normalMenu() {
-    int choice;
-    int yr, mon, day, hr, min;
-    string desc;
-
-    do {
-        cout << "\n=== User Menu ===\n";
-        cout << "1. View Appointments\n";
-        cout << "2. Add Appointment\n";
-        cout << "3. Delete Appointment\n";
-        cout << "4. Exit\n";
-        cout << "Choose an option: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "Feature not implemented yet.\n";
-            break;
-        case 2:
-            cin >> yr >> mon >> day >> hr >> min;
-            //might need to add a dummy getline here
-            getline(cin >> std::ws, desc);
-            addAppointment(yr, mon, day, hr, min, desc);
-            break;
-        case 3:
-            int index;
-            cout << "Enter index of appointment to delete (0–99): ";
-            cin >> index;
-            if (index >= 0 && index < 100) {
-                deleteAppointment(index);
-            }
-            else {
-                cerr << "Invalid index.\n";
-            }
-
-            break;
-        case 4:
-            cout << "Goodbye!\n";
-        default:
-            cout << "Invalid choice.\n";
-        }
-    } while (choice != 4);
+//This is for the addAccount member. This adds the inputted username and password into their respective arrays and pushes them back.
+void accountType::addAccount(const string& username, const string& password) 
+{
+    usernames.push_back(username);
+    passwords.push_back(password);
 }
 
-void accountType::readData() {
-    string filename = fname + "_" + lname + ".txt";
-    ifstream file(filename);
-    if (!file) {
-        cerr << "Unable to open account file: " << filename << std::endl;
-        return;
-    }
-
-    int yr, mon, day, hr, min;
-    string desc;
-    int index = 0;
-
-    while (!file.eof()) {
-        file >> yr >> mon >> day >> hr >> min;
-        appointmentType temp(yr, mon, day, hr, min, desc);
-        //might need to add a dummy getline here
-        getline(file >> std::ws, desc);
-        if (index < 100) {
-            appointments.insert(temp);
-            index++;
+//This is for the login member, which is self explanatory. It checks the username and password arrays for anything that matches what the user inputted.
+bool accountType::login(const string& username, const string& password) 
+{//i in this is set by the username inputted, which then looks for the respective password
+    for (size_t i = 0; i < usernames.size(); ++i) {
+        if (usernames[i] == username && passwords[i] == password) {
+            return true;
         }
     }
-
-    file.close();
+    return false;
 }
 
-void accountType::addAppointment(int day, int month, int year, int hour, int minute, string desc) {
-    appointmentType dummy(year, month, day, hour, minute, desc);
-    appointments.insert(dummy);
+//This adds the appointment date and description to the appointments array and runs the sortAppointments member (shown later).
+void accountType::addAppointment(const string& date, const string& description) {
+    appointments.push_back({ date, description });
+    sortAppointments();
 }
 
-void accountType::deleteAppointment(int index) {
-    appointments.removeAt(index);
+//This removes an appointment based on the date the user inputs.
+void accountType::removeAppointment(const string& date) {
+    appointments.erase(remove_if(appointments.begin(), appointments.end(),
+        [&date](const Appointment& app) { return app.date == date; }),
+        appointments.end());
 }
 
-void accountType::addAccount(const string& userName)
-{
-    accounts->push_back(userName);
-}
-
-void accountType::removeAccount(const string& userName)
-{
-    auto it = find(accounts->begin(), accounts->end(), userName);
-    if (it != accounts->end())
-    {
-        accounts->erase(it);
+//This prints the appointments array for viewing within the program.
+void accountType::viewAppointments() {
+    for (const auto& app : appointments) {
+        cout << "Date: " << app.date << ", Description: " << app.description << endl;
     }
 }
 
-void accountType::addPassword(const string& password)
-{
-
-    accounts->push_back(password);
-}
-
-void accountType::removePassword(const string& password)
-{
-    auto it = find(passwords->begin(), passwords->end(), password);
-    if (it != passwords->end())
-    {
-        passwords->erase(it);
-    }
+//This sorts the appointments by date. The lowest date value gets put at the top of the array list while the largest gets put on the bottom. 
+//This is run every time the addAppointment function is run.
+void accountType::sortAppointments() {
+    sort(appointments.begin(), appointments.end(), [](const Appointment& a, const Appointment& b) { return a.date < b.date; });
 }
