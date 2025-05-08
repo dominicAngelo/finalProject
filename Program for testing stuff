@@ -1,0 +1,156 @@
+//newAccountType.h
+#ifndef NEWACCOUNTTYPE_H
+#define NEWACCOUNTTYPE_H
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Appointment 
+{
+    string date;
+    string description;
+};
+
+class accountType 
+{
+public:
+    vector<string> usernames;
+    vector<string> passwords;
+    vector<Appointment> appointments;
+
+    void addAccount(const string& username, const string& password);
+    bool login(const string& username, const string& password);
+    void addAppointment(const string& date, const string& description);
+    void removeAppointment(const string& date);
+    void viewAppointments();
+    void sortAppointments();
+};
+
+#endif
+
+___________________________________________________________________________________________________________________________
+
+//newAccountTypeImp.cpp
+#include "newAccountType.h"
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+void accountType::addAccount(const string& username, const string& password) 
+{
+    usernames.push_back(username);
+    passwords.push_back(password);
+}
+
+bool accountType::login(const string& username, const string& password) 
+{
+    for (size_t i = 0; i < usernames.size(); ++i) 
+    {
+        if (usernames[i] == username && passwords[i] == password) 
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void accountType::addAppointment(const string& date, const string& description) 
+{
+    appointments.push_back({ date, description });
+    sortAppointments();
+}
+
+void accountType::removeAppointment(const string& date) 
+{
+    appointments.erase(remove_if(appointments.begin(), appointments.end(),
+        [&date](const Appointment& app) { return app.date == date; }),
+        appointments.end());
+}
+
+void accountType::viewAppointments() 
+{
+    for (const auto& app : appointments) 
+    {
+        cout << "Date: " << app.date << ", Description: " << app.description << endl;
+    }
+}
+
+void accountType::sortAppointments() 
+{
+    sort(appointments.begin(), appointments.end(), [](const Appointment& a, const Appointment& b) { return a.date < b.date; });
+}
+
+___________________________________________________________________________________________________________________________
+
+//main.cpp
+
+#include "newAccountType.h"
+#include <iostream>
+
+using namespace std;
+
+int main() 
+{
+    accountType account;
+    int choice;
+    string username, password, date, description;
+
+    while (true) 
+    {
+        cout << "1. Add Account\n2. Login\n3. Add Appointment\n4. Remove Appointment\n5. View Appointments\n6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) 
+        {
+        case 1:
+            cout << "Enter username: ";
+            cin >> username;
+            cout << "Enter password: ";
+            cin >> password;
+            account.addAccount(username, password);
+            break;
+
+        case 2:
+            cout << "Enter username: ";
+            cin >> username;
+            cout << "Enter password: ";
+            cin >> password;
+            if (account.login(username, password)) {
+                cout << "Login successful!\n";
+            }
+            else {
+                cout << "Invalid username or password.\n";
+            }
+            break;
+
+        case 3:
+            cout << "Enter date (YYYY-MM-DD): ";
+            cin >> date;
+            cout << "Enter description: ";
+            cin.ignore();
+            getline(cin, description);
+            account.addAppointment(date, description);
+            break;
+
+        case 4:
+            cout << "Enter date of appointment to remove (YYYY-MM-DD): ";
+            cin >> date;
+            account.removeAppointment(date);
+            break;
+
+        case 5:
+            account.viewAppointments();
+            break;
+
+        case 6:
+            return 0;
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+    }
+    return 0;
+}
